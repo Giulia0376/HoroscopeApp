@@ -7,12 +7,26 @@
 
 import UIKit
 
-class DetailViewCellViewController: UIViewController {
+class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var horoscopeImageView: UIImageView!
+    @IBOutlet weak var horoscopeNameLabel: UILabel!
+    @IBOutlet weak var horoscopeDatesLabel: UILabel!
+    
+    var horoscope: Horoscope!
+    
 
-  override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        // titulo de navegación
+        self.navigationItem.title = horoscope.name
+        
+        horoscopeNameLabel.text = horoscope.name
+        horoscopeDatesLabel.text = horoscope.dates
+        horoscopeImageView.image = horoscope.getImage()
+        
     }
     
 

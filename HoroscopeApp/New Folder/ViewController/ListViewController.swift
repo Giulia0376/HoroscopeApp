@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ListViewController: UIViewController, UITableViewDataSource {
    
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,6 +30,14 @@ class ViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HoroscopeCell", for: indexPath) as! HoroscopeViewCell
         cell.render(horoscope: horoscopeList[indexPath.row])
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            let detailViewController = segue.destination as! DetailViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            let horoscope = horoscopeList[indexPath.row]
+            detailViewController.horoscope = horoscope
+            tableView.deselectRow(at: indexPath, animated: true)
     }
 
 
