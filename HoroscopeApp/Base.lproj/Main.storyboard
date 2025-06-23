@@ -17,18 +17,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lge-zW-TGK">
-                                <rect key="frame" x="0.0" y="162" width="393" height="622"/>
+                                <rect key="frame" x="0.0" y="162" width="393" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="JjD-Za-Bta">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="BYZ-38-t0r" id="Zld-E1-KMG"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HoroscopeCell" rowHeight="100" id="kHb-SV-ard" userLabel="HoroscopeCell" customClass="HoroscopeViewCell" customModule="HoroscopeApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="100"/>
+                                        <rect key="frame" x="0.0" y="94" width="393" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kHb-SV-ard" id="ik3-x2-cwy">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horoscope Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3X-Cc-VXT">
-                                                    <rect key="frame" x="106" y="23" width="267" height="24"/>
+                                                    <rect key="frame" x="106" y="23" width="238" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -45,9 +53,15 @@
                                                     <rect key="frame" x="20" y="16" width="78" height="78"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Bgv-38-hfp">
+                                                    <rect key="frame" x="344" y="33" width="36" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="systemPinkColor"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteImageView" destination="Bgv-38-hfp" id="R1h-5I-YGs"/>
                                             <outlet property="horoscopeDatesLabel" destination="GZw-nU-uC4" id="wEz-Ws-AYj"/>
                                             <outlet property="horoscopeImageView" destination="1O0-5G-FZA" id="dp5-Tk-nXe"/>
                                             <outlet property="horoscopeNameLabel" destination="X3X-Cc-VXT" id="3BX-Rf-8Y9"/>
@@ -66,9 +80,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lge-zW-TGK" secondAttribute="bottom" id="eSb-wD-Uqv"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Zodiaco" id="oG1-FL-znH">
                         <barButtonItem key="backBarButtonItem" title="Volver" id="6Rf-hx-qOK"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="lge-zW-TGK" id="wKP-aW-T2f"/>
                     </connections>
@@ -121,14 +137,22 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Horoscope Name" id="6kg-16-eG1">
                         <rightBarButtonItems>
-                            <barButtonItem title="Share" image="square.and.arrow.up" catalog="system" id="0nn-gX-J3T"/>
+                            <barButtonItem title="Share" image="square.and.arrow.up" catalog="system" id="0nn-gX-J3T">
+                                <connections>
+                                    <action selector="share:" destination="hau-KQ-HEv" id="MBD-k6-bKA"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Favorite" image="heart" catalog="system" id="zxW-Ub-2Aa">
                                 <color key="tintColor" systemColor="systemPinkColor"/>
+                                <connections>
+                                    <action selector="setFavorite:" destination="hau-KQ-HEv" id="0GL-GH-cVJ"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="favoriteMenu" destination="zxW-Ub-2Aa" id="pZP-nq-ACG"/>
                         <outlet property="horoscopeDatesLabel" destination="98t-OW-fiD" id="Emo-nQ-fdX"/>
                         <outlet property="horoscopeImageView" destination="Lno-hk-rzo" id="LLQ-Xc-Gyi"/>
                         <outlet property="horoscopeNameLabel" destination="Uf3-yi-hC8" id="LpO-lc-B2Y"/>
@@ -160,6 +184,7 @@
     <color key="tintColor" systemColor="systemBlueColor"/>
     <resources>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
